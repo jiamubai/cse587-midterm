@@ -8,12 +8,9 @@ import logging
 from nltk.tokenize import word_tokenize
 
 # Load and preprocess datasets
-def load_dataset(file_path, embedding_model, max_len=128, test_size=0.2, padding='right', length_range=None, embed_dim=50):
+def load_dataset(file_path, embedding_model, max_len=128, test_size=0.2, padding='right', embed_dim=50):
     if 'imdb' in file_path:
         df = pd.read_csv(file_path)
-        if length_range:
-            df['token_length'] = df['review'].apply(lambda x: len(word_tokenize(str(x))))
-            df = df[(df['token_length'] > length_range[0]) & (df['token_length'] < length_range[1])]
         df = df[(df['sentiment_id'] <= 3)|(df['sentiment_id'] >=8)]
         texts = df['review'].tolist()
         labels = df['sentiment'].tolist()
