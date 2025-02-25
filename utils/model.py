@@ -1,4 +1,6 @@
 import torch.nn as nn
+import torch.nn.functional as F
+import torch
 class CNNModel(nn.Module):
     def __init__(self, embedding_dim, num_classes, max_len=128):
         super(CNNModel, self).__init__()
@@ -18,13 +20,34 @@ class CNNModel(nn.Module):
         return x
 
 # Define RNN model
-class RNNModel(nn.Module):
+class LSTMModel(nn.Module):
     def __init__(self, embedding_dim, hidden_dim, num_classes, n_layers=1):
-        super(RNNModel, self).__init__()
+        super(LSTMModel, self).__init__()
         self.rnn = nn.LSTM(embedding_dim, hidden_dim, n_layers, batch_first=True)
         self.fc = nn.Linear(hidden_dim, num_classes)
+        self.dropout = nn.Dropout(0.3)
 
     def forward(self, x):
         _, (hidden, _) = self.rnn(x)
-        x = self.fc(hidden[-1])
+        hidden = self.dropout(hidden[-1])
+        x = self.fc(hidden)
+        # if self.fc.out_features == 1:
+        #     x = torch.sigmoid(x)  # Binary classification
+        # else:
+        #     x = F.log_softmax(x, dim=1)  # Multi-class classification
+        return x
+
+
+class RNNModel(nn.Module):
+    def __init__(self, embedding_dim, hidden_dim, num_classes, n_layers=1):
+        super(RNNModel, self).__init__()
+        self.rnn = nn.RNN(embedding_dim, hidden_dim, n_layers, batch_first=True, nonlinearity='tanh')
+        self.fc = nn.Linear(hidden_dim, num_classes)
+        self.dropout = nn.Dropout(0.3)
+
+    def forward(self, x):
+        # RNN only returns (output, hidden), no cell state like LSTM
+        _, hidden = self.rnn(x)
+        hidden = self.dropout(hidden[-1])
+        x = self.fc(hidden)
         return x

@@ -5,11 +5,15 @@ import torch
 from sklearn.metrics import classification_report, accuracy_score
 from sklearn.model_selection import train_test_split
 import logging
+from nltk.tokenize import word_tokenize
 
 # Load and preprocess datasets
-def load_dataset(file_path, embedding_model, max_len=128, test_size=0.2):
+def load_dataset(file_path, embedding_model, max_len=128, test_size=0.2, padding='right', length_range=None, embed_dim=50):
     if 'imdb' in file_path:
         df = pd.read_csv(file_path)
+        if length_range:
+            df['token_length'] = df['review'].apply(lambda x: len(word_tokenize(str(x))))
+            df = df[(df['token_length'] > length_range[0]) & (df['token_length'] < length_range[1])]
         df = df[(df['sentiment_id'] <= 3)|(df['sentiment_id'] >=8)]
         texts = df['review'].tolist()
         labels = df['sentiment'].tolist()
@@ -23,13 +27,14 @@ def load_dataset(file_path, embedding_model, max_len=128, test_size=0.2):
     else:
         df = pd.read_csv(file_path, encoding="ISO-8859-1", engine="python", on_bad_lines='skip')
         df.columns = ["sentiment", "time", "date", "query", "username", "review"]
+        df = df.sample(n=10000)
         texts = df['review'].tolist()
         labels = df['sentiment'].tolist()
-        labels = [label // 2 for label in labels]
+        labels = [label // 4 for label in labels]
 
     train_texts, test_texts, train_labels, test_labels = train_test_split(texts, labels, test_size=test_size, random_state=42)
-    train_dataset = SentimentDataset(train_texts, train_labels, embedding_model, max_len)
-    test_dataset = SentimentDataset(test_texts, test_labels, embedding_model, max_len)
+    train_dataset = SentimentDataset(train_texts, train_labels, embedding_model, max_len, padding, embed_dim)
+    test_dataset = SentimentDataset(test_texts, test_labels, embedding_model, max_len, padding, embed_dim)
     return train_dataset, test_dataset
 
 
@@ -59,7 +64,7 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, device, 
         print(train_report)
         logging.info(train_report)
         print(f'Training Accuracy: {train_accuracy}')
-        logging.info(train_report)
+        logging.info(f'Training Accuracy: {train_accuracy}')
 
         print('Evaluating on Test Set...')
         logging.info('Evaluating on Test Set...')
@@ -68,7 +73,7 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, device, 
         print(test_report)
         logging.info(test_report)
         print(f'Test Accuracy: {test_accuracy}')
-        logging.info(test_report)
+        logging.info(f'Test Accuracy: {test_accuracy}')
 
 @torch.no_grad()
 def evaluate_model(model, dataloader, device):
