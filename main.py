@@ -2,19 +2,19 @@ import os
 # os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
 os.environ['TORCH_USE_CUDA_DSA'] = '1'
+import argparse
+import logging
+
 import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
-from utils import load_dataset, train_model, CNNModel, RNNModel, LSTMModel
-import gensim.downloader as api
-import argparse
-import logging
 
+from utils import load_dataset, get_dataset_path, get_embedding_model, train_model, CNNModel, RNNModel, LSTMModel
 from src.path import get_result_path
 
 
-def main():
+def get_train_args() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', type=str, default='cnn', help='Model to use: cnn, rnn, lstm')
     parser.add_argument('--dataset', type=str, default='twitter', help='Dataset to use: imdb, yelp, twitter')
@@ -28,7 +28,12 @@ def main():
     parser.add_argument('--cnn_kernel_size', type=int, default=5, help='')
     parser.add_argument('--embed_dim', type=int, default=50, help='')
     parser.add_argument('--padding', type=str, default='left', help='')
+    
+    return parser
 
+
+def main():
+    parser = get_train_args()
     args = parser.parse_args()
     print(args)
     torch.manual_seed(args.seed)
@@ -45,26 +50,11 @@ def main():
         filemode='w'
     )
 
-    # Load GloVe embeddings
-    if args.embed_dim == 50:
-        embedding_model = api.load("glove-wiki-gigaword-50")
-    elif args.embed_dim == 300:
-        embedding_model = api.load("glove-wiki-gigaword-300")
-    else:
-        raise ValueError('Invalid embedding dimension')
+    embedding_model = get_embedding_model(embed_dim=args.embed_dim)
     
     device = 'cuda:0'
-    if args.dataset == 'imdb':
-        data_path = 'dataset/processed_imdb_data.csv'
-        num_class = 2
-    elif args.dataset == 'yelp':
-        data_path = 'dataset/processed_yelp_data.csv'
-        num_class = 5
-    elif args.dataset == 'twitter':
-        data_path = 'dataset/twitter_raw.csv'
-        num_class = 2
-    else:
-        raise ValueError('Invalid dataset')
+    
+    data_path, num_class = get_dataset_path(args.dataset)
     
     train_dataset, test_dataset = load_dataset(data_path, embedding_model, max_len=args.max_len, padding=args.padding, embed_dim=args.embed_dim)
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
@@ -75,9 +65,10 @@ def main():
     elif args.model == 'lstm':
         model = LSTMModel(embedding_dim=args.embed_dim, hidden_dim=args.hidden_dim, num_classes=num_class, n_layers=args.rnn_layer).to(device)
     elif args.model == 'cnn':
-        model = CNNModel(embedding_dim=args.embed_dim, num_classes=num_class, max_len=args.max_len, kernel_size=args.cnn_kernel_size).to(device)
+        model = CNNModel(embedding_dim=args.embed_dim, hidden_dim=args.hidden_dim, num_classes=num_class, max_len=args.max_len, kernel_size=args.cnn_kernel_size).to(device)
     else:
         raise ValueError(f'Invalid model: {args.model}')
+
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
     criterion = nn.CrossEntropyLoss()
 

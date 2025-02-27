@@ -9,6 +9,33 @@ from sklearn.metrics import classification_report, accuracy_score
 from sklearn.model_selection import train_test_split
 import logging
 from nltk.tokenize import word_tokenize
+import gensim.downloader as api
+
+
+def get_embedding_model(embed_dim):
+    # Load GloVe embeddings
+    if embed_dim == 50:
+        embedding_model = api.load("glove-wiki-gigaword-50")
+    elif embed_dim == 300:
+        embedding_model = api.load("glove-wiki-gigaword-300")
+    else:
+        raise ValueError('Invalid embedding dimension')
+    return embedding_model
+
+
+def get_dataset_path(dataset_name) -> tuple[str, int]:
+    if dataset_name == 'imdb':
+        data_path = 'dataset/processed_imdb_data.csv'
+        num_class = 2
+    elif dataset_name == 'yelp':
+        data_path = 'dataset/processed_yelp_data.csv'
+        num_class = 5
+    elif dataset_name == 'twitter':
+        data_path = 'dataset/twitter_raw.csv'
+        num_class = 2
+    else:
+        raise ValueError('Invalid dataset')
+    return data_path, num_class
 
 
 # Load and preprocess datasets
