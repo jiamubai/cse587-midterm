@@ -62,7 +62,7 @@ def main():
         plt.legend()
         plt.tight_layout()
         
-        figure_path = figure_dir / f"dataset={dataset_name}_embed_dim={embed_dim}.png"
+        figure_path = figure_dir / f"embed_dim={embed_dim}.png"
         fig.savefig(figure_path)
         plt.close(fig)
             
