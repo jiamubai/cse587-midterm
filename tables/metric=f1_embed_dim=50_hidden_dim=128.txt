@@ -1,0 +1,5 @@
+Dataset & CNN & RNN & LSTM \\
+IMDB    & 65.5 & 64.9 & 65.4 \\
+Twitter & 69.0 & 66.3 & 65.3 \\
+Yelp    & 45.0 & 35.7 & 33.2 \\
+

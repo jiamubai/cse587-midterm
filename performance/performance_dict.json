@@ -1,0 +1,194 @@
+{
+    "result_cnn_imdb_epoch=20_lr=0.001_embed=50_hidden_dim=128_cnn_kernel_size=3.test.json": {
+        "f1": 0.6793569454195139,
+        "accuracy": 0.68
+    },
+    "result_cnn_imdb_epoch=20_lr=0.001_embed=50_hidden_dim=128_cnn_kernel_size=5.test.json": {
+        "f1": 0.6608528629483573,
+        "accuracy": 0.662
+    },
+    "result_cnn_imdb_epoch=20_lr=0.001_embed=50_hidden_dim=128_cnn_kernel_size=7.test.json": {
+        "f1": 0.6545552233267654,
+        "accuracy": 0.6553333333333333
+    },
+    "result_rnn_imdb_epoch=20_lr=0.001_embed=50_hidden_dim=128.test.json": {
+        "f1": 0.6489934270522713,
+        "accuracy": 0.6496666666666666
+    },
+    "result_lstm_imdb_epoch=20_lr=0.001_embed=50_hidden_dim=128.test.json": {
+        "f1": 0.6540283646949313,
+        "accuracy": 0.6543333333333333
+    },
+    "result_cnn_twitter_epoch=20_lr=0.001_embed=50_hidden_dim=128_cnn_kernel_size=3.test.json": {
+        "f1": 0.6890414124354088,
+        "accuracy": 0.6905
+    },
+    "result_cnn_twitter_epoch=20_lr=0.001_embed=50_hidden_dim=128_cnn_kernel_size=5.test.json": {
+        "f1": 0.6815078830346315,
+        "accuracy": 0.6815
+    },
+    "result_cnn_twitter_epoch=20_lr=0.001_embed=50_hidden_dim=128_cnn_kernel_size=7.test.json": {
+        "f1": 0.6896424165718772,
+        "accuracy": 0.69
+    },
+    "result_rnn_twitter_epoch=20_lr=0.001_embed=50_hidden_dim=128.test.json": {
+        "f1": 0.6629797754494762,
+        "accuracy": 0.663
+    },
+    "result_lstm_twitter_epoch=20_lr=0.001_embed=50_hidden_dim=128.test.json": {
+        "f1": 0.6534992093075793,
+        "accuracy": 0.657
+    },
+    "result_cnn_yelp_epoch=20_lr=0.001_embed=50_hidden_dim=128_cnn_kernel_size=3.test.json": {
+        "f1": 0.4567176607699111,
+        "accuracy": 0.4659746251441753
+    },
+    "result_cnn_yelp_epoch=20_lr=0.001_embed=50_hidden_dim=128_cnn_kernel_size=5.test.json": {
+        "f1": 0.4552165168133865,
+        "accuracy": 0.4688581314878893
+    },
+    "result_cnn_yelp_epoch=20_lr=0.001_embed=50_hidden_dim=128_cnn_kernel_size=7.test.json": {
+        "f1": 0.4503184543849862,
+        "accuracy": 0.46251441753171857
+    },
+    "result_rnn_yelp_epoch=20_lr=0.001_embed=50_hidden_dim=128.test.json": {
+        "f1": 0.35691955229197847,
+        "accuracy": 0.4682814302191465
+    },
+    "result_lstm_yelp_epoch=20_lr=0.001_embed=50_hidden_dim=128.test.json": {
+        "f1": 0.33200637140138906,
+        "accuracy": 0.4610726643598616
+    },
+    "result_lstm_imdb_epoch=20_lr=0.001_embed=300_hidden_dim=128.test.json": {
+        "f1": 0.7158635829923501,
+        "accuracy": 0.716
+    },
+    "result_cnn_imdb_epoch=20_lr=0.001_embed=50_hidden_dim=256_cnn_kernel_size=3.test.json": {
+        "f1": 0.6846364266112399,
+        "accuracy": 0.6856666666666666
+    },
+    "result_cnn_imdb_epoch=20_lr=0.001_embed=50_hidden_dim=256_cnn_kernel_size=5.test.json": {
+        "f1": 0.6431734290920555,
+        "accuracy": 0.644
+    },
+    "result_cnn_imdb_epoch=20_lr=0.001_embed=50_hidden_dim=256_cnn_kernel_size=7.test.json": {
+        "f1": 0.6740703427999314,
+        "accuracy": 0.6746666666666666
+    },
+    "result_rnn_imdb_epoch=20_lr=0.001_embed=50_hidden_dim=256.test.json": {
+        "f1": 0.6449757410601932,
+        "accuracy": 0.645
+    },
+    "result_lstm_imdb_epoch=20_lr=0.001_embed=50_hidden_dim=256.test.json": {
+        "f1": 0.683652330261928,
+        "accuracy": 0.6853333333333333
+    },
+    "result_cnn_twitter_epoch=20_lr=0.001_embed=50_hidden_dim=256_cnn_kernel_size=3.test.json": {
+        "f1": 0.6964405773813944,
+        "accuracy": 0.6965
+    },
+    "result_cnn_twitter_epoch=20_lr=0.001_embed=50_hidden_dim=256_cnn_kernel_size=5.test.json": {
+        "f1": 0.6841047145454257,
+        "accuracy": 0.6865
+    },
+    "result_cnn_twitter_epoch=20_lr=0.001_embed=50_hidden_dim=256_cnn_kernel_size=7.test.json": {
+        "f1": 0.6809936193619363,
+        "accuracy": 0.681
+    },
+    "result_rnn_twitter_epoch=20_lr=0.001_embed=50_hidden_dim=256.test.json": {
+        "f1": 0.6563111170419255,
+        "accuracy": 0.659
+    },
+    "result_lstm_twitter_epoch=20_lr=0.001_embed=50_hidden_dim=256.test.json": {
+        "f1": 0.7002429619257234,
+        "accuracy": 0.7005
+    },
+    "result_cnn_yelp_epoch=20_lr=0.001_embed=50_hidden_dim=256_cnn_kernel_size=3.test.json": {
+        "f1": 0.4560229099772261,
+        "accuracy": 0.4809688581314879
+    },
+    "result_cnn_yelp_epoch=20_lr=0.001_embed=50_hidden_dim=256_cnn_kernel_size=5.test.json": {
+        "f1": 0.4572210925457541,
+        "accuracy": 0.470876585928489
+    },
+    "result_cnn_yelp_epoch=20_lr=0.001_embed=50_hidden_dim=256_cnn_kernel_size=7.test.json": {
+        "f1": 0.45761071667955816,
+        "accuracy": 0.47231833910034604
+    },
+    "result_rnn_yelp_epoch=20_lr=0.001_embed=50_hidden_dim=256.test.json": {
+        "f1": 0.33201255661231927,
+        "accuracy": 0.4547289504036909
+    },
+    "result_lstm_yelp_epoch=20_lr=0.001_embed=50_hidden_dim=256.test.json": {
+        "f1": 0.2988262217519262,
+        "accuracy": 0.46164936562860437
+    },
+    "result_lstm_imdb_epoch=20_lr=0.001_embed=300_hidden_dim=256.test.json": {
+        "f1": 0.7256128001371405,
+        "accuracy": 0.7256666666666667
+    },
+    "result_cnn_imdb_epoch=20_lr=0.001_embed=50_hidden_dim=512_cnn_kernel_size=3.test.json": {
+        "f1": 0.6745362771737166,
+        "accuracy": 0.675
+    },
+    "result_cnn_imdb_epoch=20_lr=0.001_embed=50_hidden_dim=512_cnn_kernel_size=5.test.json": {
+        "f1": 0.6557537415111567,
+        "accuracy": 0.6566666666666666
+    },
+    "result_cnn_imdb_epoch=20_lr=0.001_embed=50_hidden_dim=512_cnn_kernel_size=7.test.json": {
+        "f1": 0.6595930127345181,
+        "accuracy": 0.6596666666666666
+    },
+    "result_rnn_imdb_epoch=20_lr=0.001_embed=50_hidden_dim=512.test.json": {
+        "f1": 0.5629164197087325,
+        "accuracy": 0.5733333333333334
+    },
+    "result_lstm_imdb_epoch=20_lr=0.001_embed=50_hidden_dim=512.test.json": {
+        "f1": 0.6565489874848294,
+        "accuracy": 0.6596666666666666
+    },
+    "result_cnn_twitter_epoch=20_lr=0.001_embed=50_hidden_dim=512_cnn_kernel_size=3.test.json": {
+        "f1": 0.7039733578419852,
+        "accuracy": 0.704
+    },
+    "result_cnn_twitter_epoch=20_lr=0.001_embed=50_hidden_dim=512_cnn_kernel_size=5.test.json": {
+        "f1": 0.6760823477573682,
+        "accuracy": 0.6765
+    },
+    "result_cnn_twitter_epoch=20_lr=0.001_embed=50_hidden_dim=512_cnn_kernel_size=7.test.json": {
+        "f1": 0.6806990237835815,
+        "accuracy": 0.681
+    },
+    "result_rnn_twitter_epoch=20_lr=0.001_embed=50_hidden_dim=512.test.json": {
+        "f1": 0.5893189884524123,
+        "accuracy": 0.5895
+    },
+    "result_lstm_twitter_epoch=20_lr=0.001_embed=50_hidden_dim=512.test.json": {
+        "f1": 0.6950115900463602,
+        "accuracy": 0.695
+    },
+    "result_cnn_yelp_epoch=20_lr=0.001_embed=50_hidden_dim=512_cnn_kernel_size=3.test.json": {
+        "f1": 0.4593839675625399,
+        "accuracy": 0.4812572087658593
+    },
+    "result_cnn_yelp_epoch=20_lr=0.001_embed=50_hidden_dim=512_cnn_kernel_size=5.test.json": {
+        "f1": 0.4523675921742708,
+        "accuracy": 0.4688581314878893
+    },
+    "result_cnn_yelp_epoch=20_lr=0.001_embed=50_hidden_dim=512_cnn_kernel_size=7.test.json": {
+        "f1": 0.4509188962500787,
+        "accuracy": 0.4602076124567474
+    },
+    "result_rnn_yelp_epoch=20_lr=0.001_embed=50_hidden_dim=512.test.json": {
+        "f1": 0.29534495943921785,
+        "accuracy": 0.46395617070357553
+    },
+    "result_lstm_yelp_epoch=20_lr=0.001_embed=50_hidden_dim=512.test.json": {
+        "f1": 0.32404137022826096,
+        "accuracy": 0.45761245674740486
+    },
+    "result_rnn_imdb_epoch=20_lr=0.001_embed=300_hidden_dim=512.test.json": {
+        "f1": 0.6129019577141338,
+        "accuracy": 0.6133333333333333
+    }
+}

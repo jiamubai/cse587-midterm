@@ -1,0 +1,5 @@
+Dataset & CNN & RNN & LSTM \\
+IMDB    &      &      & 71.6 \\
+Twitter &      &      &      \\
+Yelp    &      &      &      \\
+
