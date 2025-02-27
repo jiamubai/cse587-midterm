@@ -42,7 +42,7 @@ def main():
         text_len = get_text_length(test_dataset, padding=padding)
         
         # histogram
-        fig = plt.figure(figsize=(10, 5))
+        fig = plt.figure(figsize=(5, 3))
         plt.hist(text_len, bins=50)
         
         if dataset_name == "twitter":

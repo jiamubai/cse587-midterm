@@ -187,8 +187,12 @@
         "f1": 0.32404137022826096,
         "accuracy": 0.45761245674740486
     },
+    "result_cnn_imdb_epoch=20_lr=0.001_embed=300_hidden_dim=512_cnn_kernel_size=7.test.json": {
+        "f1": 0.4926104080969767,
+        "accuracy": 0.539
+    },
     "result_rnn_imdb_epoch=20_lr=0.001_embed=300_hidden_dim=512.test.json": {
-        "f1": 0.6129019577141338,
-        "accuracy": 0.6133333333333333
+        "f1": 0.5573609763312499,
+        "accuracy": 0.595
     }
 }

@@ -23,7 +23,7 @@ def main():
     hidden_dim_list = [128, 256, 512]
     for embed_dim in [50, 300]:
         for dataset_name in dataset_names_list:
-            fig = plt.figure(figsize=(10, 5))
+            fig = plt.figure(figsize=(5, 3))
             for model_name in model_names_list:
                 accuracy_list = []
                 for hidden_dim in hidden_dim_list:

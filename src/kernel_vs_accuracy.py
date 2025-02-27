@@ -25,7 +25,7 @@ def main():
     # hidden size vs accuracy
     kernel_size_list = [3, 5, 7]
     for embed_dim in [50, 300]:
-        fig = plt.figure(figsize=(10, 5))
+        fig = plt.figure(figsize=(5, 3))
         for dataset_name in dataset_names_list:
             accuracy_list = []
             for kernel_size in kernel_size_list:

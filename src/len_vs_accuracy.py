@@ -52,7 +52,7 @@ def main():
         # get text length
         text_len = get_text_length(test_dataset, padding=padding)
         
-        fig = plt.figure(figsize=(10, 5))
+        fig = plt.figure(figsize=(5, 3))
         for model_name in ["cnn", "rnn", "lstm"]:
             print(f"Model: {model_name}, Dataset: {dataset_name}")
             # load result
