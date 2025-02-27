@@ -1,3 +1,6 @@
+from pathlib import Path
+import json
+
 import pandas as pd
 from .dataset import SentimentDataset
 from tqdm import tqdm
@@ -6,6 +9,7 @@ from sklearn.metrics import classification_report, accuracy_score
 from sklearn.model_selection import train_test_split
 import logging
 from nltk.tokenize import word_tokenize
+
 
 # Load and preprocess datasets
 def load_dataset(file_path, embedding_model, max_len=128, test_size=0.2, padding='right', embed_dim=50):
@@ -35,7 +39,7 @@ def load_dataset(file_path, embedding_model, max_len=128, test_size=0.2, padding
     return train_dataset, test_dataset
 
 
-def train_model(model, train_loader, test_loader, criterion, optimizer, device, epochs=10):
+def train_model(model, train_loader, test_loader, criterion, optimizer, device, epochs=10, result_path: Path = None):
     for epoch in range(epochs):
         print(f"Epoch {epoch + 1}/{epochs}")
         logging.info(f"Epoch {epoch + 1}/{epochs}")
@@ -66,20 +70,26 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, device, 
         print('Evaluating on Test Set...')
         logging.info('Evaluating on Test Set...')
 
-        test_report, test_accuracy = evaluate_model(model, test_loader, device)
+        test_output_path = result_path.with_suffix(".test.json")
+        test_report, test_accuracy = evaluate_model(model, test_loader, device, result_path=test_output_path)
         print(test_report)
         logging.info(test_report)
         print(f'Test Accuracy: {test_accuracy}')
         logging.info(f'Test Accuracy: {test_accuracy}')
 
 @torch.no_grad()
-def evaluate_model(model, dataloader, device):
+def evaluate_model(model, dataloader, device, result_path: Path = None):
     model.eval()
     preds, targets = [], []
     for batch in tqdm(dataloader, desc='Evaluating'):
         embeddings = batch['embeddings'].to(device)
         labels = batch['label'].to(device)
         outputs = model(embeddings)
-        preds.extend(torch.argmax(outputs, dim=1).cpu().numpy())
-        targets.extend(labels.cpu().numpy())
+        preds.extend(torch.argmax(outputs, dim=1).cpu().numpy().tolist())
+        targets.extend(labels.cpu().numpy().tolist())
+    
+    if result_path is not None:
+        with open(result_path, 'w') as f:
+            json.dump({'preds': preds, 'targets': targets}, f)
+    
     return classification_report(targets, preds), accuracy_score(targets, preds)

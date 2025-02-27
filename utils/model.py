@@ -1,14 +1,16 @@
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import torch
+
+
 class CNNModel(nn.Module):
-    def __init__(self, embedding_dim, num_classes, max_len=128):
+    def __init__(self, embedding_dim, hidden_dim, num_classes, max_len=128, kernel_size=5):
         super(CNNModel, self).__init__()
-        self.conv = nn.Conv1d(embedding_dim, 128, kernel_size=5, padding=2)
+        self.conv = nn.Conv1d(embedding_dim, hidden_dim, kernel_size=kernel_size, padding=kernel_size//2)
         self.relu = nn.ReLU()
         self.pool = nn.MaxPool1d(kernel_size=2)
-        # self.fc = nn.Linear(128 * (embedding_dim // 2), num_classes)
-        self.fc = nn.Linear(128 * (max_len // 2), num_classes)
+        # self.fc = nn.Linear(hidden_dim * (embedding_dim // 2), num_classes)
+        self.fc = nn.Linear(hidden_dim * (max_len // 2), num_classes)
 
     def forward(self, x):
         x = x.permute(0, 2, 1)
