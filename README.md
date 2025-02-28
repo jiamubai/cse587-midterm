@@ -7,6 +7,10 @@ Sentiment Analysis with RNNs and CNNs
 * Jiamu Bai
 * Ryo Kamoi
 
+## Report
+
+We provide a report for our project. Please refer to [report.pdf](report.pdf)
+
 ## Setup
 
 We use miniconda3 for managing our environment.
